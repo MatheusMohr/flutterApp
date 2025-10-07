@@ -1,4 +1,5 @@
 import 'package:app_produtos/models/produto_model.dart';
+import 'package:flutter/material.dart';
 import 'package:app_produtos/services/produto_service.dart';
 import 'package:get/get.dart';
 
@@ -28,5 +29,27 @@ class ProdutoController extends GetxController{
       isLoading.value = false;
     }
   }
+  Future<void> removerProduto(String id) async {
+    try {
+      await service.remover(id);
+      produtos.removeWhere((produto) => produto.id == id);
 
+      Get.snackbar(
+        'Sucesso!',
+        'Produto removido com sucesso.',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Erro',
+        'Não foi possível remover o produto. Tente novamente.',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      error.value = 'Erro ao remover produto: $e';
+    }
+  }
 }

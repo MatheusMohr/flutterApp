@@ -1,4 +1,6 @@
 import 'package:app_produtos/screens/home_screen.dart';
+import 'package:app_produtos/screens/loja_form_screen.dart';
+import 'package:app_produtos/screens/loja_list_screen.dart';
 import 'package:app_produtos/screens/produto_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +20,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      //rota inicial
       initialRoute: '/',
-      // lista das rotas e paginas
       getPages: [
         GetPage(name: '/', page: () => MyHomePage(title: 'home')),
-        GetPage(name: '/produtos', page: () => ProdutoListScreen())
+        GetPage(name: '/produtos', page: () => ProdutoListScreen()),
+        GetPage(name: '/lojas', page: () => LojaListScreen()),
+        GetPage(name: '/loja-form', page: () => const LojaFormScreen()),
       ],
     );
   }

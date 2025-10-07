@@ -18,8 +18,12 @@ class ProdutoService{
       }
       throw Exception('Erro ao listar produtos: ${res.statusCode}');
     }
+    Future<void> remover(String id) async {
+      final Uri url = Uri.parse('$baseUrl/apagar/$id');
+      final res = await _client.post(url);
 
-
-
-
+      if (res.statusCode != 200) {
+        throw Exception('Falha ao remover o produto: ${res.statusCode} - ${res.body}');
+      }
+    }
 }
